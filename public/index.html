@@ -22,7 +22,7 @@
   <body>
     <header class="app-header">
       <div class="header-left">
-        <h1 class="app-title">FinDash <span class="project-tag">(final project: fiance support)</span></h1>
+        <h1 class="app-title">FinDash <span class="project-tag">(final project: finance support)</span></h1>
         <p class="app-subtitle">Daniel Lin • Aviation High School</p>
       </div>
       <div class="header-right">
@@ -30,30 +30,27 @@
       </div>
     </header>
 
-    <main class="dashboard" id="dashboard">
-      <section class="balance-wrap">
-        <div class="balance-card">
-          <div class="balance-label">Total Balance</div>
-          <div class="balance-amount" id="balance-amount">$0.00</div>
-          <div class="balance-change" id="balance-change">+0.00%</div>
+    <main class="chat" id="chat">
+      <div class="chat-messages" id="messages">
+        <div class="message message-ai">
+          <div class="message-bubble">
+            Hi! Ask me anything to get started.
+          </div>
         </div>
-        <div class="actions">
-          <button class="action-btn">Send</button>
-          <button class="action-btn">Receive</button>
-          <button class="action-btn">Exchange</button>
-        </div>
-      </section>
+      </div>
 
-      <section class="cards" id="cards">
-        <!-- portfolio cards injected here -->
-      </section>
-
-      <section class="transactions">
-        <div class="section-title">Recent Activity</div>
-        <div id="tx-list" class="tx-list">
-          <!-- transactions injected here -->
-        </div>
-      </section>
+      <form class="composer" id="composer" autocomplete="off">
+        <input
+          class="composer-input"
+          id="composer-input"
+          type="text"
+          placeholder="Type a message..."
+          required
+        />
+        <button class="composer-send" id="composer-send" type="submit">
+          Send
+        </button>
+      </form>
     </main>
 
     <script type="module" src="/app.js"></script>
