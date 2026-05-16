@@ -1,208 +1,83 @@
-/* ============================================
-   THEME — CHANGE THESE TO MAKE IT YOURS
-   ============================================
-   Try editing a few values, save the file, and
-   the page will refresh on its own. Or ask
-   GitHub Copilot Chat: "make this theme
-   green and purple". */
+:root{
+  /* Palette */
+  --bg: #030504; /* near-black */
+  --bg-2: #07140d; /* deep green-black */
+  --surface: #07140d;
+  --card: rgba(10,14,10,0.6);
+  --border: rgba(200,255,0,0.12);
+  --accent: #C8FF00; /* neon lime */
+  --accent-2: #E6FF4D;
+  --text: #ffffff;
+  --text-muted: #9aa097;
+  --glass: rgba(255,255,255,0.03);
 
-:root {
-  --bg:           #0a0a0a;   /* dark background for focus */
-  --surface:      #1a1a1a;   /* chat bubbles and inputs */
-  --border:       #333333;   /* subtle borders */
-  --text:         #facc15;   /* bright golden text for energy */
-  --text-muted:   #a3a3a3;   /* muted hints */
-  --accent:       #10b981;   /* vibrant emerald green accents */
-  --accent-hover: #34d399;  /* brighter mint green highlights */
-  --user-bubble:  var(--accent);
-  --ai-bubble:    var(--surface);
-
-  --radius:       16px;     /* modern rounded corners */
+  --radius: 14px;
   --font: "Inter", system-ui, -apple-system, sans-serif;
-  --max-width:    800px;    /* wider layout for modern feel */
+  --max-width: 420px; /* mobile-first */
 }
 
-/* ============================================
-   Layout below — you CAN edit it, but the
-   variables above already recolor everything.
-   ============================================ */
-
-* {
-  box-sizing: border-box;
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;padding:0}
+body{
+  font-family:var(--font);
+  background: radial-gradient(1200px 600px at 10% 10%, rgba(200,255,0,0.02), transparent 8%),
+              linear-gradient(180deg,var(--bg) 0%, var(--bg-2) 100%);
+  color:var(--text);
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  padding:28px 12px;
 }
 
-html,
-body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  background: var(--bg);
-  color: var(--text);
-  font-family: var(--font);
-  font-size: 16px;
-  line-height: 1.5;
+.app-header{
+  width:100%;
+  max-width:var(--max-width);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:16px;
 }
 
-body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: linear-gradient(135deg, var(--bg) 0%, #0f0f0f 100%);
-}
+.header-left{display:flex;flex-direction:column}
+.app-title{margin:0;font-size:20px;font-weight:700;letter-spacing:-0.02em;color:var(--text)}
+.app-subtitle{margin:2px 0 0;font-size:12px;color:var(--text-muted)}
+.project-tag{font-size:12px;color:var(--accent);margin-left:8px;font-weight:700}
 
-.app-header {
-  width: 100%;
-  max-width: var(--max-width);
-  padding: 32px 24px 16px;
-  text-align: center;
-}
+.icon-btn{background:transparent;color:var(--text);border:1px solid rgba(255,255,255,0.04);padding:8px;border-radius:10px;cursor:pointer}
 
-.app-title {
-  margin: 0;
-  font-size: 32px;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  background: linear-gradient(45deg, var(--accent), var(--accent-hover));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
+.dashboard{width:100%;max-width:var(--max-width);}
 
-.app-subtitle {
-  margin: 4px 0 0;
-  color: var(--text-muted);
-  font-size: 14px;
+.balance-wrap{display:flex;gap:12px;align-items:center;margin-bottom:16px}
+.balance-card{
+  flex:1;padding:16px;border-radius:14px;background:linear-gradient(180deg, rgba(200,255,0,0.04), rgba(0,0,0,0.3));
+  border:1px solid var(--border);box-shadow:0 6px 24px rgba(0,0,0,0.6), inset 0 -2px 40px rgba(200,255,0,0.02);
 }
+.balance-label{font-size:12px;color:var(--text-muted)}
+.balance-amount{font-size:28px;font-weight:700;margin-top:6px;color:var(--text)}
+.balance-change{font-size:12px;margin-top:6px;color:var(--accent)}
 
-.chat {
-  width: 100%;
-  max-width: var(--max-width);
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  padding: 0 24px 24px;
-  min-height: 0;
-}
+.actions{display:flex;gap:8px}
+.action-btn{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#000;border:none;padding:10px 12px;border-radius:12px;font-weight:600;cursor:pointer;box-shadow:0 8px 30px rgba(200,255,0,0.12)}
 
-.chat-messages {
-  flex: 1;
-  overflow-y: auto;
-  padding: 20px 0;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
+.cards{display:flex;gap:12px;overflow:auto;padding-bottom:8px;margin-bottom:16px}
+.card{min-width:160px;flex:0 0 160px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.25));border-radius:12px;padding:12px;border:1px solid rgba(200,255,0,0.06);box-shadow:0 8px 20px rgba(0,0,0,0.6)}
+.card .label{font-size:12px;color:var(--text-muted)}
+.card .value{font-size:18px;font-weight:700;margin-top:6px}
+.card .spark{height:36px;margin-top:8px}
 
-.message {
-  display: flex;
-  width: 100%;
-  animation: msg-in 0.18s ease-out;
-}
+.transactions{background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.2));border-radius:12px;padding:12px;border:1px solid rgba(255,255,255,0.02)}
+.section-title{font-size:13px;color:var(--text-muted);margin-bottom:8px}
+.tx-list{display:flex;flex-direction:column;gap:8px}
+.transaction{display:flex;justify-content:space-between;align-items:center;padding:10px;border-radius:10px;background:linear-gradient(180deg, transparent, rgba(0,0,0,0.05));border:1px solid rgba(255,255,255,0.02)}
+.tx-left{display:flex;flex-direction:column}
+.tx-name{font-size:14px;color:var(--text)}
+.tx-meta{font-size:12px;color:var(--text-muted)}
+.tx-amount{font-weight:700;color:var(--text)}
 
-.message-user {
-  justify-content: flex-end;
-}
+/* small helpers */
+.muted{color:var(--text-muted)}
 
-.message-ai {
-  justify-content: flex-start;
-}
+/* responsive tweaks */
+@media (min-width:480px){body{padding:40px}}
 
-.message-bubble {
-  max-width: 80%;
-  padding: 14px 18px;
-  border-radius: var(--radius);
-  white-space: pre-wrap;
-  word-wrap: break-word;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-  transition: box-shadow 0.2s ease, transform 0.2s ease;
-}
-
-.message-bubble:hover {
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
-  transform: translateY(-2px);
-}
-
-.message-user .message-bubble {
-  background: var(--user-bubble);
-  color: white;
-  border-bottom-right-radius: 4px;
-}
-
-.message-ai .message-bubble {
-  background: var(--ai-bubble);
-  border: 1px solid var(--border);
-  border-bottom-left-radius: 4px;
-}
-
-.message-ai.is-streaming .message-bubble::after {
-  content: "█";
-  margin-left: 2px;
-  animation: cursor-blink 1s steps(1) infinite;
-  color: var(--text-muted);
-}
-
-.composer {
-  display: flex;
-  gap: 8px;
-  padding-top: 12px;
-  border-top: 1px solid var(--border);
-}
-
-.composer-input {
-  flex: 1;
-  padding: 14px 16px;
-  background: var(--surface);
-  border: 2px solid var(--border);
-  border-radius: var(--radius);
-  color: var(--text);
-  font: inherit;
-  outline: none;
-  transition: border-color 0.15s, box-shadow 0.15s;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-}
-
-.composer-input:focus {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
-}
-
-.composer-send {
-  padding: 0 24px;
-  background: linear-gradient(135deg, var(--accent), var(--accent-hover));
-  color: white;
-  border: none;
-  border-radius: var(--radius);
-  font: inherit;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.15s, transform 0.15s;
-  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
-}
-
-.composer-send:hover:not(:disabled) {
-  background: linear-gradient(135deg, var(--accent-hover), var(--accent));
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(16, 185, 129, 0.6);
-}
-
-.composer-send:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-@keyframes msg-in {
-  from {
-    opacity: 0;
-    transform: translateY(4px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes cursor-blink {
-  50% {
-    opacity: 0;
-  }
-}
