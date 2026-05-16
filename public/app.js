@@ -95,6 +95,13 @@ function scrollToBottom() {
   messagesEl.scrollTop = messagesEl.scrollHeight;
 }
 
+function initializeChat() {
+  history.length = 0;
+  messagesEl.innerHTML = "";
+  appendMessage("assistant", "Hi! Ask me anything to get started.");
+  inputEl.focus();
+}
+
 // Async iterator that yields each `data:` payload from an SSE stream.
 async function* readSseStream(body) {
   const reader = body.getReader();
@@ -123,14 +130,9 @@ btnRefresh?.addEventListener("click", () => {
   // rotate animation for feedback
   btnRefresh.animate([{ transform: "rotate(0)" }, { transform: "rotate(360deg)" }], { duration: 500 });
 
-  // clear conversation
-  history.length = 0;
-  messagesEl.innerHTML = "";
-
-  // add initial assistant greeting
-  appendMessage("assistant", "Hi! Ask me anything to get started.");
-
-  // focus input
-  inputEl.focus();
+  initializeChat();
 });
+
+// Initialize the chat on page load so the first bubble is rendered consistently.
+initializeChat();
 
